@@ -1,13 +1,6 @@
 # Acromine
 Meanings for Acronyms
 
-
-
-# UrbanDictionary
-Nike Coding Challenge Urban Dictionary
-
-# ![alt-text][logo] UrbanDictionary
-
 Android App
 
 **Description**
