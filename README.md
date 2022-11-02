@@ -27,10 +27,10 @@ This app was built following the next feature:
 
 For improvement it will be added.
 
-Better Error handling
-Dependency injection using Hilt
-Testing
-UX improvement
+- Better Error handling
+- Dependency injection using Hilt
+- Testing
+- UX improvement
 
 
 **Screenshot**
