@@ -15,10 +15,17 @@ import com.luz.acromine.api.model.Lf
 import com.luz.acromine.databinding.ActivityMainBinding
 import com.luz.acromine.ui.adapter.AcromineAdapter
 import com.luz.acromine.viewmodel.AcromineViewModel
-
+import com.luz.acromine.viewmodel.AcromineViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: AcromineViewModelFactory
+
     private lateinit var viewModel: AcromineViewModel
+
     val acronymAdapter by lazy { AcromineAdapter() }
     lateinit var recyclerv: RecyclerView
     lateinit var topAppBar: MaterialToolbar
@@ -27,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         var actMainBinding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this)[AcromineViewModel::class.java]
+        //viewModel = ViewModelProvider(this)[AcromineViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AcromineViewModel::class.java)
+
         actMainBinding.acromineVM = viewModel
         actMainBinding.lifecycleOwner = this
 
@@ -42,9 +51,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer {
             handleErrors(it)
         })
-
     }
-
     private fun handleResults(lfList: List<Lf>) {
         acronymAdapter.submitList(lfList)
     }
